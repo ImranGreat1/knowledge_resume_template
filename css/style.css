@@ -1,0 +1,150 @@
+:root {
+    --primary-color: #425b84;
+    --secondary-color: #5b7bb4;
+    --max-width: 1100px;
+}
+
+html {
+    font-size: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font: normal 16px/1.6 "Roboto";
+    background-color: var(--primary-color);
+    color: #f4f4f4;
+}
+
+.container {
+    max-width: var(--max-width);
+    padding: 0 1.5rem;
+    margin: auto;
+}
+
+
+/* Header */
+#main-header {
+    padding: 5rem;
+    text-align: center;
+    background-color: var(--secondary-color);
+    color: #f4f4f4;
+}
+
+/* Timeline */
+#timeline ul {
+    padding: 6rem 0;
+}
+
+#timeline ul li {
+    width: 4px;
+    background-color: #f4f4f4;
+    margin: auto;
+    list-style: none;
+    position: relative;
+}
+
+/* li circle */
+#timeline ul li::after {
+    content: "";
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-color: inherit;
+    bottom: 2px;
+    /* center balls within the li line  */
+    left: -180%;
+    border-radius: 50%;
+}
+
+#timeline ul li div {
+    position: relative;
+    width: 35rem;
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    bottom: 0;
+}
+
+#timeline ul li:nth-child(odd) div {
+    left: 3rem;
+}
+
+/* Even numbers to the left */
+#timeline ul li:nth-child(even) div {
+    /* -35rem width + 3rem for spacing */
+    left: -37.5rem;
+}
+
+/* Div Arrow pointer */
+#timeline ul li div::after {
+    content: "";
+    position: absolute;
+    left: -1.1rem;
+    bottom: 6px;
+    border-width: 0.7rem 1.1rem 0.7rem 0;
+    border-style: solid;
+    /* Make some of the border direction transparent to give
+    the pointer needed  */
+    border-color: transparent var(--secondary-color) transparent transparent;
+}
+
+/* Change arrow position on the left side */
+#timeline ul li:nth-child(even) div::after {
+    left: 35rem;
+    border-width: 0.7rem 0 0.7rem 1.1rem;
+    border-color: transparent transparent transparent var(--secondary-color);
+}
+
+/* Responsive view */
+@media screen and (max-width: 800px) {
+    #timeline ul li div {
+        width: 25rem;
+    }
+
+    #timeline ul li:nth-child(even) div {
+        left: -27.5rem;
+    }
+
+    #timeline ul li:nth-child(even) div::after {
+        left: 25rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    /* Make everything the same way as odd divs */
+    #timeline ul li {
+        margin-left: 0;
+        padding-bottom: 6rem;
+    }
+
+    #timeline ul li div {
+        /* Using calc function */
+        width: calc(100vw - 100px);
+    }
+
+    #timeline ul li:nth-child(even) div {
+        left: 3rem;
+    }
+
+    /* Positioning arrow the same with even */
+    #timeline ul li:nth-child(even) div::after {
+        left: -1.1rem;
+    }
+
+    /* Arrows should look the same way */
+    #timeline ul li:nth-child(even) div::after {
+        border-width: 0.7rem 1.1rem 0.7rem 0;
+        border-color: transparent var(--secondary-color) transparent transparent;
+    }
+
+    /* Change ul::after balls position */
+    #timeline ul li::after {
+        /* 6rem padding + bottom 2px */
+        bottom: calc(6rem + 2px);
+    }
+}
